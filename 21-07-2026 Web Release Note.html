@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web App Enhancement - Metaagrow | Version 9.21v</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .release-badge {
+            display: inline-block;
+            background: #4CAF50;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .release-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .release-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .meta-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .meta-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .meta-value {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .content-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #1e3c72;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .intro-text {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .module-card {
+            background: #f8faff;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #1e3c72;
+        }
+
+        .module-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .module-name {
+            font-size: 20px;
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        .module-tag {
+            background: #e3f2fd;
+            color: #1e3c72;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 8px;
+            padding-left: 22px;
+            position: relative;
+        }
+
+        .benefits-list li::before {
+            content: "✓";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+        }
+
+        .filter-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select, .filter-button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .filter-button {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .features-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .features-table th {
+            background: #1e3c72;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .features-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-id {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        .module-badge {
+            background: #e3f2fd;
+            color: #1e3c72;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+        }
+
+        .footer-logo {
+            font-weight: bold;
+            color: #1e3c72;
+        }
+
+        @media(max-width:768px){
+            .module-grid{
+                grid-template-columns:1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="release-badge">RELEASE NOTES - VERSION 9.21v</div>
+
+        <h1 class="release-title">
+            Web Application Enhancements Release – Metaagrow
+        </h1>
+
+        <div class="release-subtitle">
+Enhanced ticket management, flexible asset linking, improved checklist workflows, interactive dashboards, and streamlined account recovery across modules.        </div>
+
+        <div class="meta-grid">
+            <div class="meta-card">
+                <div class="meta-label">Release Version</div>
+                <div class="meta-value">9.21v</div>
+            </div>
+
+            <div class="meta-card">
+                <div class="meta-label">Release Date</div>
+                <div class="meta-value">July 21, 2026</div>
+            </div>
+
+            <div class="meta-card">
+                <div class="meta-label">Platform</div>
+                <div class="meta-value">Web Application</div>
+            </div>
+
+            <div class="meta-card">
+                <div class="meta-label">Features Included</div>
+                <div class="meta-value">6 Major Enhancements</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- INTRODUCTION -->
+    <section class="content-section">
+
+        <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> Introduction
+        </h2>
+
+        <p class="intro-text">
+            We are pleased to announce <strong>Version 9.21v</strong> — focused on improving ticket management, asset association, checklist usability, dashboard interaction, and user account recovery across the Metaagrow web application.
+        </p>
+
+        <p class="intro-text">
+            This release introduces enhanced ticket functionality with a new Critical priority option, editable ticket details, increased character limits, flexible asset linking, department assignment, and additional ticket type options.
+        </p>
+
+       
+
+    </section>
+
+    <!-- MODULE OVERVIEW -->
+    <section class="content-section">
+
+        <h2 class="section-title">
+            <i class="fas fa-th-large"></i> Module Overview & Key Benefits
+        </h2>
+
+        <div class="module-grid">
+
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-name">Ticketing & Workflow Enhancements</div>
+                    <div class="module-tag">6 Features</div>
+                </div>
+
+                <div class="feature-title">
+                    Operational Workflow Improvements Across Ticketing, Checklist, Dashboard, and Admin Access
+                </div>
+
+                <ul class="benefits-list">
+                    <li>Add "Critical" priority option in the ticket module for better urgency classification</li>
+                    <li>Enable editable ticket details with increased character limits up to 1000 characters</li>
+                    <li>Allow asset reassignment from a ticket at any time and assign department values</li>
+                    <li>Provide additional ticket type options and direct asset linking from ticket and asset detail views</li>
+                    <li>Shuffle checklist questions in inspection and maintenance creation/editing workflows</li>
+                    <li>Make dashboard and report date sections clickable and fully functional, and support admin forgot-password recovery on the web login page</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURES TABLE -->
+    <section class="content-section">
+
+        <h2 class="section-title">
+            <i class="fas fa-table"></i> All Features Summary
+        </h2>
+
+        <!-- <div class="filter-controls">
+
+            <select id="moduleFilter" class="filter-select">
+                <option value="all">All Modules</option>
+                <option value="Ticketing & Workflow Enhancements">Ticketing & Workflow Enhancements</option>
+            </select>
+
+            <button id="resetFilters" class="filter-button">
+                Reset Filters
+            </button>
+
+        </div> -->
+
+        <div class="table-container">
+
+            <table class="features-table" id="featuresTable">
+
+                <thead>
+                    <tr>
+                        <th>Feature ID</th>
+                        <th>Module</th>
+                        <th>Feature Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="feature-id">F-1</td>
+                        <td><span class="module-badge">Ticket</span></td>
+                        <td>Critical Priority Option</td>
+                        <td>Add "Critical" priority option in the ticket module for better urgency classification.</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-id">F-2</td>
+                        <td><span class="module-badge">Ticket</span></td>
+                        <td>Editable Ticket Details</td>
+                        <td>Enable editable ticket details with increased character limits up to 1000 characters.</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-id">F-3</td>
+                        <td><span class="module-badge">Ticket</span></td>
+                        <td>Flexible Asset Association</td>
+                        <td>Allow asset reassignment from a ticket at any time and assign department values.</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-id">F-4</td>
+                        <td><span class="module-badge">Ticket</span></td>
+                        <td>Ticket Type Options & Direct Asset Link</td>
+                        <td>Provide additional ticket type options and direct asset linking from ticket and asset detail views.</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-id">F-5</td>
+                        <td><span class="module-badge">Inspection & Maintenance</span></td>
+                        <td>Checklist Question Shuffle</td>
+                        <td>Shuffle checklist questions in inspection and maintenance creation/editing workflows.</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-id">F-6</td>
+                        <td><span class="module-badge">Forgot Password</span></td>
+                        <td>Admin Forgot Password Support</td>
+                        <td>Provide Forgot Password functionality on the web login page for admins.</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <p>
+            © 2026
+            <span class="footer-logo">
+                SYNCCIT SOLUTIONS PVT. LTD.
+            </span>
+            All rights reserved.
+        </p>
+
+        <p style="margin-top:10px;">
+            Release Notes - Version 9.21v | July 21, 2026
+        </p>
+
+    </footer>
+
+</div>
+
+<script>
+
+    const moduleFilter = document.getElementById('moduleFilter');
+    const resetFilters = document.getElementById('resetFilters');
+    const table = document.getElementById('featuresTable');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    function applyFilters() {
+
+        const moduleValue = moduleFilter.value;
+
+        tbody.innerHTML = '';
+
+        rows.forEach(row => {
+
+            const moduleText = row.querySelector('.module-badge').textContent;
+
+            if(moduleValue === 'all' || moduleValue === moduleText){
+                tbody.appendChild(row);
+            }
+
+        });
+
+    }
+
+    moduleFilter.addEventListener('change', applyFilters);
+
+    resetFilters.addEventListener('click', () => {
+        moduleFilter.value = 'all';
+        applyFilters();
+    });
+
+</script>
+
+</body>
+</html>
